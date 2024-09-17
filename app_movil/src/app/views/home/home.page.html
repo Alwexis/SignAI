@@ -1,5 +1,5 @@
 <main class="bg-sky-900 w-full h-full px-8 py-10 relative" > 
-  <ion-segment value="default">
+  <ion-segment value="default" mode="ios">
     <ion-segment-button value="default">
       <section class="py-2">
         <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
@@ -18,10 +18,12 @@
   </ion-segment>
 
   <section class="bg-slate-50 w-60 h-60 mx-auto absolute top-60 rounded-md left-0 right-0">
-
+    @if (img != '') {
+      <img class="w-full h-full object-contain" src="{{img}}">
+    }
   </section>
 
-  <section class="absolute bottom-40 left-0 right-0 mx-auto w-28 h-28 border-4
+  <section (click)="toggleRecord()" class="absolute bottom-40 left-0 right-0 mx-auto w-28 h-28 border-4
        border-sky-950 shadow-md rounded-full bg-red-400"> 
        <div class="ion-activatable relative overflow-hidden rounded-full w-full h-full">
         <ion-ripple-effect></ion-ripple-effect>
