@@ -1,0 +1,7 @@
+{
+  "name": "SignAi-Movil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
