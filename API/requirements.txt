@@ -2,3 +2,8 @@ pymongo
 pymongo[srv]
 vosk
 fastapi
+python-multipart
+gunicorn
+firebase-admin
+motor
+ffmpeg-python
