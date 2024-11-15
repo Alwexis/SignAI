@@ -1,0 +1,89 @@
+---
+import { app } from "../firebase/server";
+import { getAuth } from "firebase-admin/auth";
+
+/* Check if the user is authenticated */
+const auth = getAuth(app);
+let loggedIn: boolean = false;
+if (Astro.cookies.has("__session")) {
+  const sessionCookie = Astro.cookies.get("__session")!.value;
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie);
+  if (decodedCookie) {
+    loggedIn = true;
+  }
+}
+---
+<main class="selection-none bg-neutral-950 w-full flex justify-between px-4 py-4 ">
+    <a class="w-1/6" href="/">
+        <section class="flex items-center font-montserrat text-neutral-100 cursor-pointer">
+            <img class="w-10 h-10" src="signai-white.webp" alt="">
+            <h2 class="ml-2 cursor-pointer text-xl font-semibold">SignAI</h2>
+        </section>
+    </a>
+    <section class="flex items-center justify-center text-neutral-100 space-x-4 first:ml-0 last:mr-0 w-3/6 font-nunito">
+        <div data-element="caracteristicas" class="navbar_option group flex flex-col items-center justify-center max-w-fit cursor-pointer">
+            <span class="group-hover:text-indigo-400 transition-all duration-200">Características</span>
+            <div class="h-0.5 w-full max-h-0 max-w-0 bg-indigo-400 group-hover:max-h-2 group-hover:max-w-96 transition-all duration-700 ease-in-out"></div>
+        </div>
+        <a href="/documentation">
+            <div class="group flex flex-col items-center justify-center max-w-fit cursor-pointer">
+                <span class="group-hover:text-indigo-400 transition-all duration-200">
+                    Documentación
+                </span>
+                <div class="h-0.5 w-full max-h-0 max-w-0 bg-indigo-400 group-hover:max-h-2 group-hover:max-w-96 transition-all duration-700 ease-in-out"></div>
+            </div>
+        </a>
+        <div data-element="planes" class="navbar_option group flex flex-col items-center justify-center max-w-fit cursor-pointer">
+            <span class="group-hover:text-indigo-400 transition-all duration-200">
+                Planes
+            </span>
+            <div class="h-0.5 w-full max-h-0 max-w-0 bg-indigo-400 group-hover:max-h-2 group-hover:max-w-96 transition-all duration-700 ease-in-out"></div>
+        </div>
+        <div data-element="sobrenosotros" class="navbar_option group flex flex-col items-center justify-center max-w-fit cursor-pointer">
+            <span class="group-hover:text-indigo-400 transition-all duration-200">
+                Sobre nosotros
+            </span>
+            <div class="h-0.5 w-full max-h-0 max-w-0 bg-indigo-400 group-hover:max-h-2 group-hover:max-w-96 transition-all duration-700 ease-in-out"></div>
+        </div>
+    </section>
+    <section class="flex items-center text-neutral-100 w-fit font-nunito">
+        {
+            loggedIn ?
+            <a href="/account">
+                <div class="flex items-center justify-center cursor-pointer px-4 py-2 mx-1 rounded-md border hover:bg-neutral-800 transition-all border-neutral-200 text-neutral-200">
+                    <span>Mi cuenta</span>
+                </div>
+            </a>
+            <a href="/api/auth/signout">
+                <div class="flex items-center justify-center cursor-pointer px-4 py-2 mx-1 rounded-md border hover:bg-red-600 hover:text-red-100 transition-all border-red-400 text-red-400">
+                    <span>Cerrar sesión</span>
+                </div>
+            </a>
+            :
+            <a href="/signin">
+                <div class="flex items-center justify-center cursor-pointer px-4 py-2 mx-1 rounded-md border hover:bg-neutral-800 transition-all border-neutral-200 text-neutral-200">
+                    <span>Iniciar sesión</span>
+                </div>
+            </a>
+            <a href="/register">
+                <div class="flex items-center justify-center cursor-pointer px-4 py-2 mx-1 rounded-md bg-neutral-200 hover:bg-neutral-300 transition-all border border-neutral-900 text-neutral-900">
+                    <span>Registrarse</span>
+                </div>
+            </a>
+        }
+    </section>
+</main>
+<script>
+    const opciones = document.querySelectorAll('.navbar_option');
+    opciones.forEach((el: any) => {
+        let elementToScroll = el.dataset.element;
+        
+        el.addEventListener('click', async () => {
+            if (document.location.pathname != '/') {
+                document.location.href = document.location.href.replace('account', '#'+elementToScroll);
+            } else {
+                document.getElementById(elementToScroll)?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
