@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Endpoints from '../components/Endpoints.astro';
+import Examples from '../components/Examples.astro';
+---
+
+<Layout title="SignAI">
+    <Navbar />
+    <main class="relative w-full h-full flex flex-col items-center justify-center">
+        <section class="absolute top-0 left-0 -z-20 w-full h-full">
+            <svg id='bg2' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'>
+                <defs>
+                    <pattern id='bg2_a' patternUnits='userSpaceOnUse' width='70' height='70' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='rgba(23, 23, 23, 1.00)'/><path d='M-4.8 4.44L4 16.59 16.14 7.8M32 30.54l-13.23 7.07 7.06 13.23M-9 38.04l-3.81 14.5 14.5 3.81M65.22 4.44L74 16.59 86.15 7.8M61 38.04l-3.81 14.5 14.5 3.81'  stroke-linecap='square' stroke-width='1' stroke='rgba(38, 38, 38, 1.00)' fill='none'/><path d='M59.71 62.88v3h3M4.84 25.54L2.87 27.8l2.26 1.97m7.65 16.4l-2.21-2.03-2.03 2.21m29.26 7.13l.56 2.95 2.95-.55'  stroke-linecap='square' stroke-width='1' stroke='rgba(64, 64, 64, 1.00)' fill='none'/><path d='M58.98 27.57l-2.35-10.74-10.75 2.36M31.98-4.87l2.74 10.65 10.65-2.73M31.98 65.13l2.74 10.66 10.65-2.74'  stroke-linecap='square' stroke-width='1' stroke='rgba(82, 82, 82, 1.00)' fill='none'/><path d='M8.42 62.57l6.4 2.82 2.82-6.41m33.13-15.24l-4.86-5.03-5.03 4.86m-14-19.64l4.84-5.06-5.06-4.84'  stroke-linecap='square' stroke-width='1' stroke='rgba(115, 115, 115, 1.00)' fill='none'/></pattern>
+                </defs>
+                <rect width='800%' height='800%' transform='translate(0,0)' fill='url(#bg2_a)'/>
+            </svg>
+        </section>
+        <section class="absolute bg-neutral-950 bg-opacity-40 top-0 left-0 -z-10 w-full h-full"></section>
+
+        <section class="flex flex-col max-w-4xl bg-neutral-950 bg-opacity-25 px-4 py-2">
+            <h1 class="text-3xl font-semibold font-montserrat text-neutral-100">Documentación</h1>
+            <p class="font-nunito text-neutral-300 my-2">
+                En esta página obtendrás información sobre nuestro servicio, incluyendo sus endpoints y parámetros, hasta ejemplos escritos en diversos lenguajes y frameworks.
+            </p>
+            <div id="opciones" class="flex items-center justify-center w-full bg-neutral-900 hover:bg-neutral-900 rounded-t-md mt-4">
+                <section data-option="endpoints" class="w-1/2 h-full flex items-center justify-center bg-opacity-50 text-neutral-200 font-bold font-nunito py-2 cursor-pointer transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M21 18H6a1 1 0 1 0 0 2h15v2H6a3 3 0 0 1-3-3V4a2 2 0 0 1 2-2h16zM5 16.05q.243-.05.5-.05H19V4H5zM16 9H8V7h8z"/></svg>
+                    <h2 class="mx-2">Documentación</h2>
+                </section>
+                <section data-option="examples" class="w-1/2 h-full flex items-center justify-center bg-neutral-950 hover:bg-neutral-900 bg-opacity-50 text-neutral-200 font-bold font-nunito py-2 cursor-pointer transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m24 12l-5.657 5.657l-1.414-1.414L21.172 12l-4.243-4.243l1.414-1.414zM2.828 12l4.243 4.243l-1.414 1.414L0 12l5.657-5.657L7.07 7.757zm6.96 9H7.66l6.552-18h2.128z"/></svg>
+                    <h2 class="mx-2">Ejemplos</h2>
+                </section>
+            </div>
+            <div class="flex justify-between max-w-full">
+                <Endpoints />
+                <Examples />
+            </div>
+        </section>
+    </main>
+</Layout>
+<script>
+    let actual = 'endpoints';
+    document.querySelectorAll('#opciones section').forEach((option) => {
+        option.addEventListener('click', (e: any) => {
+            const data = e.target.dataset.option;
+            console.log(data);
+            if (data == actual) return;
+            actual = data;
+            const endpoints_option = document.querySelector('[data-option="endpoints"]');
+            const examples_option = document.querySelector('[data-option="examples"]');
+            const examples = document.querySelector('#examples');
+            const endpoints = document.querySelector('#endpoints');
+            if (data == 'endpoints') {
+                console.log(examples)
+                examples?.classList.add('hidden');
+                examples_option?.classList.remove('bg-neutral-900');
+                examples_option?.classList.add('bg-neutral-950');
+
+                endpoints?.classList.remove('hidden');
+                endpoints_option?.classList.add('bg-neutral-900');
+                endpoints_option?.classList.remove('bg-neutral-950');
+            } else {
+                console.log(endpoints)
+                endpoints?.classList.add('hidden');
+
+                endpoints_option?.classList.remove('bg-neutral-900');
+                endpoints_option?.classList.add('bg-neutral-950');
+                examples?.classList.remove('hidden');
+                examples_option?.classList.remove('bg-neutral-950');
+            }
+            // if (option.id == 'Endpoints') {
+            //     document.querySelector('#Endpoints')?.classList.add('bg-neutral-900');
+            //     document.querySelector('#Endpoints')?.classList.remove('bg-neutral-950');
+            //     document.querySelector('#Examples')?.classList.add('bg-neutral-950');
+            //     document.querySelector('#Examples')?.classList.remove('bg-neutral-900');
+            //     document.querySelector('Endpoints')?.classList.remove('hidden');
+            //     document.querySelector('Examples')?.classList.add('hidden');
+            // } else {
+            //     document.querySelector('#Examples')?.classList.add('bg-neutral-900');
+            //     document.querySelector('#Examples')?.classList.remove('bg-neutral-950');
+            //     document.querySelector('#Endpoints')?.classList.add('bg-neutral-950');
+            //     document.querySelector('#Endpoints')?.classList.remove('bg-neutral-900');
+            //     document.querySelector('Examples')?.classList.remove('hidden');
+            //     document.querySelector('Endpoints')?.classList.add('hidden');
+            // }
+        });
+    });
+</script>

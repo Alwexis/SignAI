@@ -1,0 +1,99 @@
+---
+---
+
+<main id="endpoints" class="w-full h-full flex bg-neutral-900 py-2 px-4 rounded-b-md">
+    <section class="flex flex-col w-[25%]" id="options">
+        <div id="speech-to-text" class="flex flex-col mt-2 mb-4 px-2 py-1 font-mono bg-neutral-800 hover:bg-neutral-800 bg-opacity-55 rounded-md transition-all cursor-pointer">
+            <h3>
+                <span class="text-green-400 animate-pulse font-bold">[POST]</span>
+                <span class="text-neutral-200">/speech-to-text</span>
+            </h3>
+            <span class="text-neutral-400">
+                Voz a Señas
+            </span>
+        </div>
+        <div id="video-to-text" class="flex flex-col mb-2 mt-4 px-2 py-1 font-mono hover:bg-neutral-800 bg-opacity-55 rounded-md transition-all cursor-pointer">
+            <h3>
+                <span class="text-green-400 animate-pulse font-bold">[POST]</span>
+                <span class="text-neutral-200">/video-to-text</span>
+            </h3>
+            <span class="text-neutral-400">
+                Vídeo a Texto
+            </span>
+        </div>
+    </section>
+    <div class="w-[1px] h-[80%] bg-neutral-600 mx-4 self-center"></div>
+    <section class="flex flex-col w-[75%]">
+        <div data-type="speech-to-text">
+            <div class="flex justify-between items-center font-mono bg-neutral-800 bg-opacity-50 w-full text-neutral-200 px-4 py-1 rounded-md">
+                <span>/speech-to-text</span>
+                <div class="flex items-center justify-center w-6 h-6 rounded-md cursor-pointer border border-transparent hover:bg-neutral-800 hover:border-neutral-700 transition-all">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1 1 0 0 1 3 21l.003-14c0-.552.45-1 1.006-1zM5.002 8L5 20h10V8zM9 6h8v10h2V4H9z"/></svg>
+                </div>
+            </div>
+            <p class="text-neutral-300 px-1 my-1 text-sm">
+                Interpreta el contenido de un audio y lo convierte a su equivalente en Lengua de Señas Chileno.
+            </p>
+            <div class="w-[90%] h-[1px] bg-neutral-600 self-center my-2"></div>
+            <div class="px-1 mb-2">
+                <h1 class="font-nunito text-neutral-200 font-semibold">Headers:</h1>
+                <section class="flex flex-col px-2 text-sm font-mono">
+                    <p class="text-neutral-400">- <span class="text-green-200 animate-pulse">APIKey</span>: <span class="text-neutral-300">Una APIKey válida con créditos a favor.</span></p>
+                </section>
+            </div>
+            <div class="px-1 mt-2">
+                <h1 class="font-nunito text-neutral-200 font-semibold">Body:</h1>
+                <section class="flex flex-col px-2 text-sm font-mono">
+                    <p class="text-neutral-400">- <span class="text-green-200 animate-pulse">file</span>: <span class="text-neutral-300">Archivo de audio para su transcripción (formatos testeados </span> <span class="text-green-300 bg-neutral-950 px-1 py-0.5">.webm</span><span class="text-neutral-300">)</span> </p>
+                </section>
+            </div>
+        </div>
+        <div class="hidden" data-type="video-to-text">
+            <div class="flex justify-between items-center font-mono bg-neutral-800 bg-opacity-50 w-full text-neutral-200 px-4 py-1 rounded-md">
+                <span>/video-to-text</span>
+                <div class="flex items-center justify-center w-6 h-6 rounded-md cursor-pointer border border-transparent hover:bg-neutral-800 hover:border-neutral-700 transition-all">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7 6V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1 1 0 0 1 3 21l.003-14c0-.552.45-1 1.006-1zM5.002 8L5 20h10V8zM9 6h8v10h2V4H9z"/></svg>
+                </div>
+            </div>
+            <p class="text-neutral-300 px-1 my-1 text-sm">
+                Interpreta el contenido de un vídeo o imagen, y lo convierte a su equivalente en Lengua de Señas.
+            </p>
+            <p class="flex text-sm font-mono">
+                <span class="font-bold text-red-600 animate-pulse">[IMPORTANTE]</span>
+                <span class="text-red-400 mx-1">Ésto consta de un modelo BETA, por ende, las clasificaciones podrían no ser 100% seguras</span>
+            </p>
+            <div class="w-[90%] h-[1px] bg-neutral-600 self-center my-2"></div>
+            <div class="px-1 mb-2">
+                <h1 class="font-nunito text-neutral-200 font-semibold">Headers:</h1>
+                <section class="flex flex-col px-2 text-sm font-mono">
+                    <p class="text-neutral-400">- <span class="text-green-200 animate-pulse">APIKey</span>: <span class="text-neutral-300">Una APIKey válida con créditos a favor.</span></p>
+                </section>
+            </div>
+            <div class="px-1 mt-2">
+                <h1 class="font-nunito text-neutral-200 font-semibold">Body:</h1>
+                <section class="flex flex-col px-2 text-sm font-mono">
+                    <p class="text-neutral-400">- <span class="text-green-200 animate-pulse">file</span>: <span class="text-neutral-300">Archivo de audio para su transcripción (formatos testeados </span> 
+                        <span class="text-green-300 bg-neutral-950 px-1 py-0.5">.webm</span> 
+                        <span class="text-green-300 bg-neutral-950 px-1 py-0.5">.png</span> 
+                        <span class="text-green-300 bg-neutral-950 px-1 py-0.5">.jp(e)g</span><span class="text-neutral-300">)</span>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    let actual = 'speech-to-text';
+    document.querySelectorAll('#options div').forEach((option) => {
+        option.addEventListener('click', (e: any) => {
+            if (option.id == actual) return;
+            const notChosen = option.id == 'speech-to-text' ? 'video-to-text' : 'speech-to-text';
+            option.classList.add('bg-neutral-800');
+            document.getElementById(notChosen)?.classList.remove('bg-neutral-800');
+            const type = e.currentTarget.id
+            document.querySelector(`[data-type="${actual}"]`)?.classList.add('hidden');
+            document.querySelector(`[data-type="${type}"]`)?.classList.remove('hidden');
+            actual = option.id;
+        });
+    });
+</script>
