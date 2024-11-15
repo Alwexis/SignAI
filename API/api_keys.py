@@ -22,8 +22,6 @@ def add_api_key_to_user(user_id: str):
     
     # Proceder a generar y agregar la API Key
     api_key_obj, raw_key = APIKey.create()
-    print(api_key_obj)
-    print(raw_key)
     result = db.users.update_one(
         {"uid": user_id},
         {"$push": {"api_keys": api_key_obj.model_dump(by_alias=True)}}
@@ -34,9 +32,7 @@ def add_api_key_to_user(user_id: str):
     else:
         raise Exception("No se pudo agregar la API Key al usuario")
     
-def authenticate_api_key(raw_key: str) -> Optional[User]:
-    key_hash = APIKey.hash_key(raw_key)
-    
+def authenticate_api_key(key_hash: str) -> Optional[User]:    
     user = db.users.find_one({
         "api_keys": {
             "$elemMatch": {
@@ -49,12 +45,41 @@ def authenticate_api_key(raw_key: str) -> Optional[User]:
     return User(**user) if user else None
 
 def revoke_api_key(user_id: str, key_hash: str):
+    # Busca el usuario en la base de datos
+    user = db.users.find_one({"uid": user_id})
+    if not user:
+        raise Exception("Usuario no encontrado")
+    
+    # Intenta eliminar la API key con el key_hash proporcionado
     result = db.users.update_one(
         {"uid": user_id, "api_keys.keyHash": key_hash},
-        {"$set": {"api_keys.$.active": False}}
+        {"$pull": {"api_keys": {"keyHash": key_hash}}}
     )
     
+    # Verifica si se modificó algún documento (si se eliminó la API key)
     if result.modified_count == 1:
         return True
     else:
-        return False
+        raise Exception("La API Key no pertenece al usuario o ya fue revocada")
+    
+def decrement_quota(user_id: str, resource: str):
+    user = db.users.find_one({"uid": user_id})
+    if not user:
+        raise Exception("Usuario no encontrado")
+    
+    # Verifica que el recurso exista y tenga una cantidad mayor a 0
+    current_quota = user.get("quota", {})
+    if resource not in current_quota:
+        raise Exception(f"El recurso '{resource}' no existe en la cuota del usuario")
+    
+    if current_quota[resource] <= 0:
+        raise Exception(f"La cuota para el recurso '{resource}' se ha agotado")
+
+    # Realiza el decremento en la base de datos
+    result = db.users.update_one(
+        {"uid": user_id},
+        {"$inc": {f"quota.{resource}": -1}}
+    )
+    
+    if result.modified_count != 1:
+        raise Exception("No se pudo actualizar la cuota del usuario")

@@ -7,3 +7,5 @@ gunicorn
 firebase-admin
 motor
 ffmpeg-python
+tensorflow
+keras

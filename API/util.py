@@ -8,6 +8,10 @@ import os
 import ffmpeg
 import shutil
 from db import db
+import numpy as np
+#? Modelo CNN
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
 
 #! .-----------------------------------.
 #! |                                   |
@@ -24,8 +28,40 @@ from db import db
 #? olvidarnos de lo que hace algo u olvidarnos de algún detalle X que esté documentado.
 #? Para los lectores del código, pedimos disculpas de antemano.
 
+#? Definimos las clases de la CNN
+__model_classes__ = { 'A': 0,
+ 'B': 1,
+ 'C': 2,
+ 'D': 3,
+ 'E': 4,
+ 'F': 5,
+ 'G': 6,
+ 'H': 7,
+ 'I': 8,
+ 'J': 9,
+ 'K': 10,
+ 'L': 11,
+ 'M': 12,
+ 'N': 13,
+ 'O': 14,
+ 'P': 15,
+ 'Q': 16,
+ 'R': 17,
+ 'S': 18,
+ 'T': 19,
+ 'U': 20,
+ 'V': 21,
+ 'W': 22,
+ 'X': 23,
+ 'Y': 24,
+ 'Z': 25,
+ 'del': 26,
+ 'nothing': 27,
+ 'space': 28 }
+
 #? Cargamos el modelo VOSK.
 model = Model("./models/vosk-model-es-0.42")
+cnn_model = load_model('./models/SignAI_Model.h5')
 
 def handleAudio(file: UploadFile, delete: bool, audioId: str = ''):
     if not delete:
@@ -55,16 +91,18 @@ def handleAudio(file: UploadFile, delete: bool, audioId: str = ''):
         os.remove(wave_path)
 
 def find_images_by_sentence(sentence):
-    print('Buscando imágenes para:')
-    print(sentence)
     words = sentence.split()
     images = []
     #? Guardamos el índice de la Lista en "idx", para poder saltar palabras en caso
     #? de que sean "compuestas"
     idx = 0
+    prevIdx = 0
     while idx < len(words):
+        prevIdx = idx
         word = words[idx]
         nextWord = ''
+        #? Obtenemos el registro de la palabra sola, por si acaso no se encuentra una compuesta o algo.
+        aloneWord = get_images_by_word(word)
         #? Verificamos si es que es un "auxiliar", ej: os, nos, que, te, etc.
         #? Si lo es, construimos la palabra "auxiliar".
         #? En caso de que no, construimos la palabra "compuesta", en caso de haberla.
@@ -74,8 +112,11 @@ def find_images_by_sentence(sentence):
             nextWord, idx, skip = handle_compound_words(words, idx)
         #? Almacenamos el resultado de la búsqueda.
         result = get_images_by_word(word, nextWord)
-        images.extend(result['images'])
-        
+        if len(result['images']) < 1:
+            idx = prevIdx
+            images.extend(aloneWord['images'])
+        else:
+            images.extend(result['images'])
         #? En caso de que haya sido una palabra compuesta, ej: cómo estás.
         #? Cómo ya se marcó "cómo", saltaremos la siguiente palabra "estás" para
         #? no volver a interpretarla. Para ésto sumaremos "skip" a "idx".
@@ -83,7 +124,6 @@ def find_images_by_sentence(sentence):
             idx += skip
         else:
             idx += 1
-    print('¡Listo! Imágenes encontradas')
     return images
 
 def handle_auxiliary_words(words, idx):
@@ -139,7 +179,7 @@ def get_images_by_word(word, nextWord=''):
     
     _compound_results = list(collection.find(compound_query, {"_id": 0, "images": 1}))
     
-    if _compound_results:
+    if _compound_results and nextWord != '':
         wasCompound = True
         for result in _compound_results:
             images.extend(result['images'])
@@ -214,7 +254,6 @@ def transcribe_audio(wav_file: str):
     #? "strip" para eliminar los espacios sobrantes.
     transcription += json.loads(recognizer.FinalResult())['text']
     wf.close()
-    print('Audio transcrito')
     return transcription.strip()
 
 def handleVideo(file: UploadFile, delete: bool, videoId: str = ''):
@@ -234,7 +273,7 @@ def handleVideo(file: UploadFile, delete: bool, videoId: str = ''):
         #? Ahora transformamos el Video a "8fps".
         transform_to_24fps(save_path, f"./__temp__/{video_id}_8fps.mp4")
         #? Ahora dividimos el video en Frames.
-        divide_video_by_frames(f"./__temp__/{video_id}_8.mp4", f"./__temp__/{video_id}_frames")
+        divide_video_by_frames(f"./__temp__/{video_id}_8fps.mp4", f"./__temp__/{video_id}_frames")
         #? Ahora confirmamos si es que se creó o convirtió a 8fps.
         if os.path.exists(f"./__temp__/{video_id}_8fps.mp4"):
             print(f"El archivo {video_id}_8fps.mp4 se ha convertido correctamente y se han dividido los frames.")
@@ -277,6 +316,32 @@ def divide_video_by_frames(video_path, output_dir):
     except ffmpeg.Error as e:
         error_message = e.stderr.decode() if e.stderr else "Error desconocido al dividir el video."
         print(f"Error al dividir el video en frames: {error_message}")
+
+#? Predicción
+def predict_video(video_id):
+    frames_dir = f"./__temp__/{video_id}_frames"
+    predicted = []
+    for frame in os.listdir(frames_dir):
+        frame_path = f"{frames_dir}/{frame}"
+        predicted_class = predict_sign(frame_path, cnn_model)
+        predicted.append({ "frame": frame, "sign": predicted_class })
+    return predicted
+
+def predict_sign(img_path, model):
+    img = image.load_img(img_path, target_size=(200, 200))
+    img_array = image.img_to_array(img)
+    img_array = img_array / 255.0  # Normalizar
+    img_array = np.expand_dims(img_array, axis=0)
+
+    predictions = model.predict(img_array)
+    predicted_class = np.argmax(predictions, axis=1)
+
+    # Invertir el diccionario de class_indices
+    class_indices = {v: k for k, v in __model_classes__.items()}
+
+    # Obtener la clase predicha
+    predicted_class_name = class_indices[predicted_class[0]]
+    return predicted_class_name
 
 #? Por si acaso xd
 def backup_collection(source_collection_name, backup_collection_name):
