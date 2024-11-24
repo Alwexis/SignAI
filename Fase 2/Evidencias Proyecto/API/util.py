@@ -220,7 +220,7 @@ def transform_audio(audio_name: str, path: str):
     
     #? Ejecutamos el comando dentro de un Try para manejar errores sin que crashee el sv.
     try:
-        subprocess.run(command, check=True)
+        subprocess.run(command, check=True, stdout=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
         print(f"Error al convertir el archivo: {e}")
 
@@ -294,7 +294,7 @@ def transform_to_24fps(input_video, output_video):
     
     try:
         #? Comando de FFMPEG para convertir a 8 FPS
-        ffmpeg.input(input_video).output(output_video, r=8).run(overwrite_output=True)
+        ffmpeg.input(input_video).output(output_video, r=4).run(overwrite_output=True)
         print(f"Video transformado a 8 FPS y guardado como {output_video}.")
     except ffmpeg.Error as e:
         error_message = e.stderr.decode() if e.stderr else "Error desconocido durante la conversión."

@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Senas from '../../components/Senas';
+
+const sala = Astro.params.roomCode || "";
+---
+
+<Layout title="Welcome to Astro.">
+	<main class="w-full flex justify-center bg-gray-100">
+		<Senas sala={sala} client:load />
+	</main>
+</Layout>
