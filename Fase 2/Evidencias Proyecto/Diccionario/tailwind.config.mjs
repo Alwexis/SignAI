@@ -1,0 +1,14 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	theme: {
+		extend: {
+			fontFamily: {
+				inter: ['"Inter"', 'sans-serif'],
+				nunito: ['"Nunito"', 'sans-serif'],
+				"work-sans": ['"Work Sans"', 'sans-serif'],
+			}
+		},
+	},
+	plugins: [],
+}

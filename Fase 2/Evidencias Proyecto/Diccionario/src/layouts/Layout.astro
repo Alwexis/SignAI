@@ -1,0 +1,40 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>SignAI - Diccionario</title>
+		<ViewTransitions />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+	
+	/* width */
+	*::-webkit-scrollbar {
+	  width: 4px;
+	  height: 4px;
+	}
+	
+	/* Track */
+	*::-webkit-scrollbar-track {
+	  background: rgb(28 25 23); 
+	  border-radius: 10px;
+	}
+	
+	/* Handle */
+	*::-webkit-scrollbar-thumb {
+	  background: black; 
+	  border-radius: 6px;
+	}
+</style>

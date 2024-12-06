@@ -1,0 +1,44 @@
+[
+    {
+        "_id": "66e4a71083a681be96839fd7",
+        "id": "00de6993-1378-415c-8499-b4928359b67e",
+        "images": [
+            "https://i.imgur.com/FAk0wEe.jpeg"
+        ],
+        "text": [
+            "¿Cómo?",
+            "Cómo?",
+            "Cómo"
+        ]
+    },
+    {
+        "_id": "66e4a71483a681be96839fd9",
+        "id": "3ac71959-99f3-4b48-9b9a-380ce4d75a21",
+        "images": [
+            "https://i.imgur.com/MSbPtEU.jpeg",
+            "https://i.imgur.com/Zdy0IyK.jpeg"
+        ],
+        "text": [
+            "¿Cómo está?",
+            "Cómo está?",
+            "Cómo está",
+            "¿Cómo estás?",
+            "Cómo estás?",
+            "Cómo estás"
+        ]
+    },
+    {
+        "_id": "66e4a71a83a681be96839fda",
+        "id": "03c7223a-fa4a-4869-bad8-c645584dfc6e",
+        "images": [
+            "https://i.imgur.com/jDTiIab.jpeg",
+            "https://i.imgur.com/61PWh1F.jpeg"
+        ],
+        "text": [
+            "¿Por qué?",
+            "¿Por qué",
+            "Por qué",
+            "Por qué"
+        ]
+    }
+]

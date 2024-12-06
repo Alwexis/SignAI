@@ -1,0 +1,57 @@
+[
+    {
+        "_id": "66e881abc931ede432931b6f",
+        "id": "023a0074-c093-4d4e-be47-41e83824daee",
+        "images": [
+            "https://i.imgur.com/YsbNzgi.jpeg"
+        ],
+        "text": [
+            "Karate"
+        ]
+    },
+    {
+        "_id": "66e881adc931ede432931b70",
+        "id": "953e9450-29d6-40d4-893c-83da3d63199d",
+        "images": [
+            "https://i.imgur.com/ICixwhB.jpeg",
+            "https://i.imgur.com/Qv94RCN.jpeg"
+        ],
+        "text": [
+            "Kilo",
+            "kilogramo"
+        ]
+    },
+    {
+        "_id": "66e881afc931ede432931b71",
+        "id": "def7dc19-5881-4eab-b1e1-2592e272f51e",
+        "images": [
+            "https://i.imgur.com/VQUvzHn.jpeg",
+            "https://i.imgur.com/PaQxD07.jpeg"
+        ],
+        "text": [
+            "Kilómetro"
+        ]
+    },
+    {
+        "_id": "66e881b0c931ede432931b72",
+        "id": "3da3eb32-37e6-4269-8a4e-7c5765b794db",
+        "images": [
+            "https://i.imgur.com/mxCvxqf.jpeg",
+            "https://i.imgur.com/1NJ0idi.jpeg"
+        ],
+        "text": [
+            "Kiwi"
+        ]
+    },
+    {
+        "_id": "66e881b3c931ede432931b73",
+        "id": "9f09af65-9a2b-4494-af43-3dfe61c3f5af",
+        "images": [
+            "https://i.imgur.com/muluXKB.jpeg",
+            "https://i.imgur.com/Yf3v0p4.jpeg"
+        ],
+        "text": [
+            "Koala"
+        ]
+    }
+]

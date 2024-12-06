@@ -1,0 +1,143 @@
+[
+    {
+        "_id": "66e8e4bf26571ff997b57c9d",
+        "id": "802a056e-d26a-4b0e-899f-f8a4e8bc764f",
+        "images": [
+            "https://i.imgur.com/AgHOMYL.jpeg"
+        ],
+        "text": [
+            "Zanahoria"
+        ]
+    },
+    {
+        "_id": "66e8e4c226571ff997b57c9e",
+        "id": "c28dc99f-5816-4bf2-ae26-b247c5ffed67",
+        "images": [
+            "https://i.imgur.com/JljIwMm.jpeg"
+        ],
+        "text": [
+            "Zancudo",
+            "mosquito"
+        ]
+    },
+    {
+        "_id": "66e8e4c426571ff997b57c9f",
+        "id": "3f8faf1b-f8e5-48b2-bd05-551eefd08b38",
+        "images": [
+            "https://i.imgur.com/Zt8CK6Y.jpeg",
+            "https://i.imgur.com/5y9n4ql.jpeg"
+        ],
+        "text": [
+            "Zapallito italiano",
+            "calabacín"
+        ]
+    },
+    {
+        "_id": "66e8e4c726571ff997b57ca0",
+        "id": "0d5deceb-e8ee-4f52-9be0-e8bea92f33c1",
+        "images": [
+            "https://i.imgur.com/CZMygXU.jpeg",
+            "https://i.imgur.com/ssymZrc.jpeg"
+        ],
+        "text": [
+            "Zapallo",
+            "calabaza"
+        ]
+    },
+    {
+        "_id": "66e8e4c826571ff997b57ca1",
+        "id": "d1a30f98-7f7b-45d6-925d-87ffdb773f5e",
+        "images": [
+            "https://i.imgur.com/VjgoHqF.jpeg",
+            "https://i.imgur.com/U3hWK4R.jpeg"
+        ],
+        "text": [
+            "Zapatería"
+        ]
+    },
+    {
+        "_id": "66e8e4c926571ff997b57ca2",
+        "id": "e4b18e3d-48a0-4c91-80da-f89f374981f3",
+        "images": [
+            "https://i.imgur.com/hM4a0X6.jpeg"
+        ],
+        "text": [
+            "Zapatero"
+        ]
+    },
+    {
+        "_id": "66e8e4cb26571ff997b57ca3",
+        "id": "0fad0d51-76d1-4cba-a944-6a68e42ca8b2",
+        "images": [
+            "https://i.imgur.com/uB0rdH0.jpeg"
+        ],
+        "text": [
+            "Zapatilla"
+        ]
+    },
+    {
+        "_id": "66e8e4cd26571ff997b57ca4",
+        "id": "1b5f4859-dffd-43b0-979f-51a7ba55c988",
+        "images": [
+            "https://i.imgur.com/vftXAW0.jpeg"
+        ],
+        "text": [
+            "Zapato",
+            "calzado",
+            "calzo",
+            "calzas",
+            "calza",
+            "calzamos",
+            "calzáis",
+            "calzan",
+            "calzás",
+            "calzaba",
+            "calzabas",
+            "calzábamos",
+            "calzabais",
+            "calzaban",
+            "calcé",
+            "calzaste",
+            "calzó",
+            "calzasteis",
+            "calzaron",
+            "calzaré",
+            "calzarás",
+            "calzará",
+            "calzaremos",
+            "calzaréis",
+            "calzarán",
+            "calzaría",
+            "calzarías",
+            "calzaríamos",
+            "calzaríais",
+            "calzarían",
+            "calzar",
+            "calzando",
+            "calzado",
+            "calzarse"
+        ]
+    },
+    {
+        "_id": "66e8e4ce26571ff997b57ca5",
+        "id": "50c10e73-43f4-4934-99a8-5e50294a3bb6",
+        "images": [
+            "https://i.imgur.com/6YSLyAa.jpeg",
+            "https://i.imgur.com/iPNQu7V.jpeg"
+        ],
+        "text": [
+            "Zoológico"
+        ]
+    },
+    {
+        "_id": "66e8e4d026571ff997b57ca6",
+        "id": "8eba2a3a-57d9-4ca5-a2d6-4897cde8f461",
+        "images": [
+            "https://i.imgur.com/GmtedfT.jpeg",
+            "https://i.imgur.com/w0MTLa8.jpeg"
+        ],
+        "text": [
+            "Zorro"
+        ]
+    }
+]

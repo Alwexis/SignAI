@@ -1,0 +1,69 @@
+[
+    {
+        "_id": "66e8e45f3982e8040c32a6e4",
+        "id": "26fc4997-caaf-462c-a02f-6dc65a620ff6",
+        "images": [
+            "https://i.imgur.com/YiT6E2o.png"
+        ],
+        "text": [
+            "Washington"
+        ]
+    },
+    {
+        "_id": "66e8e4643982e8040c32a6e5",
+        "id": "b1a95dec-b798-472a-ad89-c0fa2ccb55bd",
+        "images": [
+            "https://i.imgur.com/f06eDHT.jpeg",
+            "https://i.imgur.com/iMc8KHv.jpeg"
+        ],
+        "text": [
+            "W.C.",
+            "Baño",
+            "baño",
+            "bañas",
+            "baña",
+            "bañamos",
+            "bañáis",
+            "bañan",
+            "bañás",
+            "bañaba",
+            "bañabas",
+            "bañábamos",
+            "bañabais",
+            "bañaban",
+            "bañé",
+            "bañaste",
+            "bañó",
+            "bañasteis",
+            "bañaron",
+            "bañaré",
+            "bañarás",
+            "bañará",
+            "bañaremos",
+            "bañaréis",
+            "bañarán",
+            "bañaría",
+            "bañarías",
+            "bañaríamos",
+            "bañaríais",
+            "bañarían",
+            "bañar",
+            "bañando",
+            "bañado",
+            "bañarse",
+            "Water",
+            "Inodoro"
+        ]
+    },
+    {
+        "_id": "66e8e4653982e8040c32a6e6",
+        "id": "0a3fbf1d-a4c0-40af-a4a7-7e87ee05be71",
+        "images": [
+            "https://i.imgur.com/Q0SEr10.jpeg",
+            "https://i.imgur.com/ZSlGuWt.jpeg"
+        ],
+        "text": [
+            "Whisky"
+        ]
+    }
+]

@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout>
+	<main class="min-h-screen bg-gradient-to-b from-neutral-900 to-black text-white py-16">
+		<section class="container mx-auto px-4 text-center">
+			<h1 class="font-inter tracking-widest mb-2 text-5xl font-bold text-neutral-50">
+				SignAI
+			</h1>
+
+			<h2 class="font-inter mb-4 text-xl font-semibold text-gray-300">
+				Diccionario Virtual de Lengua de Señas Chilena	
+			</h2>
+			
+			<div class="mx-auto max-w-2xl">
+			  <p class="text-gray-300 font-nunito">
+				SignAI es un proyecto de innovación para Capstone en DuocUC, cuyo propósito es brindar la base de un servicio intérprete de señas chileno basado en inteligencia artificial. Esta página corresponde al primer módulo de nuestro proyecto: digitalización del LCHs.
+			  </p>
+			</div>
+			
+			<a href="/dictionary" class="my-8 font-nunito cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 mb-12 px-8 py-6 text-lg bg-gray-700 hover:bg-gray-600 text-white">
+				Ir al diccionario
+			</a>
+			
+			<div class="text-sm text-gray-400 mt-12 w-full flex items-center justify-center">
+			  <p class="max-w-xs md:max-w-lg text-center">Agradecemos y damos crédito al <a href="https://especial.mineduc.cl" class="text-red-400">Ministerio de Educación de Chile</a> por el contenido de las imágenes utilizadas en este diccionario.</p>
+			</div>
+		</section>
+	</main>
+</Layout>

@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import WordWrapper from '../components/WordWrapper.tsx';
+
+const _rawWords = await getCollection('dictionary');
+let words: any[] = [];
+const wordsKeys = _rawWords.map((word) => word.id);
+
+_rawWords.forEach((word) => {
+    words = words.concat(word.data);
+});
+---
+
+<Layout>
+    <div class="min-h-screen bg-gradient-to-b from-neutral-900 to-black text-white">
+        <header class="p-4 flex justify-between items-center">
+          <a href="/" class="text-2xl font-bold text-white">
+            SignAI
+          </a>
+          <h1 class="text-xl font-semibold text-center text-gray-300">Diccionario de Lengua de Señas Chilena</h1>
+          <div class="w-20"></div>
+        </header>
+        <WordWrapper client:load _words={words} wordsKeys={wordsKeys} />
+    
+        {/*
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {filteredWords.map((item) => (
+              <Card key={item.id} class="bg-gray-900 border-gray-800">
+                <CardHeader class="p-3">
+                  <CardTitle class="text-lg">{item.word}</CardTitle>
+                </CardHeader>
+                <CardContent class="p-3">
+                  <img src={item.image} alt={item.word} class="w-full h-24 object-cover mb-2 rounded-md" />
+                  <CardDescription class="text-sm text-gray-300">{item.meanings[0]}</CardDescription>
+                </CardContent>
+                <CardFooter class="p-3">
+                  <Button 
+                    onClick={() => setExpandedWord(expandedWord === item.id ? null : item.id)}
+                    variant="outline"
+                    size="sm"
+                    class="w-full text-xs"
+                  >
+                    {expandedWord === item.id ? 'Menos detalles' : 'Más detalles'}
+                  </Button>
+                </CardFooter>
+                {expandedWord === item.id && (
+                  <CardContent class="p-3 border-t border-gray-700">
+                    <h4 class="font-semibold mb-1 text-sm">Significados:</h4>
+                    <ul class="list-disc list-inside mb-2 text-xs text-gray-300">
+                      {item.meanings.map((meaning, index) => (
+                        <li key={index}>{meaning}</li>
+                      ))}
+                    </ul>
+                    <h4 class="font-semibold mb-1 text-sm">Sinónimos:</h4>
+                    <p class="text-xs text-gray-300">{item.synonyms.join(', ')}</p>
+                  </CardContent>
+                )}
+              </Card>
+            ))}
+          </div>
+           */}
+        </main>
+      </div>
+</Layout>
